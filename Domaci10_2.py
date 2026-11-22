@@ -83,17 +83,17 @@ temperature = np.array([
 missing=np.isnan(temperature)
 # Identifikovati nedostajuće vrednosti. -> [False False  True False False False False False  True False False False False  True False]
 print(missing)
-# Identifikovati nevalidne temperature (vrednosti manje od -20 ili veće od 50). -> [55.  60.2]
+# Identifikovati nevalidne temperature (vrednosti manje od -20 ili veće od 50). -> [ 55.  -25.   60.2]
 print(temperature[(temperature<-20) | (temperature>50)])
-# Pronaći indekse nevalidnih vrednosti. -> [ 4 11]
+# Pronaći indekse nevalidnih vrednosti. -> [ 4  6 11]
 print(np.where((temperature<-20) | (temperature>50))[0])
-# Izračunati broj nedostajućih i nevalidnih vrednosti. -> 3 115.2
+# Izračunati broj nedostajućih i nevalidnih vrednosti. -> 3 3 
 print(np.sum(missing)) 
 print(np.sum(((temperature<-20) | (temperature>50))))
-# Izračunati procenat nevalidnih i nedostajućih zapisa zajedno. -> 33.33333333333333
+# Izračunati procenat nevalidnih i nedostajućih zapisa zajedno. -> 40.0
 print(np.sum(missing| ((temperature<-20) | (temperature>50)))/temperature.size*100)
-# Kreirati novi niz koji sadrži samo validne temperature. -> [ 18.5  21.   23.4  19.8 -25.   22.1  24.6  20.3  17.9  21.7]
+# Kreirati novi niz koji sadrži samo validne temperature. -> [18.5 21.  23.4 19.8 22.1 24.6 20.3 17.9 21.7]
 print(temperature[~missing & ~((temperature<-20) | (temperature>50))])
-# Izračunati prosečnu temperaturu bez nedostajućih i nevalidnih vrednosti. -> 16.43 2
+# Izračunati prosečnu temperaturu bez nedostajućih i nevalidnih vrednosti. -> 21.033333333333335
 print(temperature[~missing & ~((temperature<-20) | (temperature>50))].mean())
 
